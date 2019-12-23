@@ -1,2 +1,4 @@
 *.so
 *.o
+build/
+exercise_wrap.cxx
