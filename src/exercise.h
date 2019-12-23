@@ -10,4 +10,10 @@ struct response_type
     string body;
 };
 
+struct post_type
+{
+    int user_id;
+    char *title;
+};
+
 #endif // _EXERCISE_H_
