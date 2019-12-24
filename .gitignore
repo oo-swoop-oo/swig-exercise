@@ -2,3 +2,5 @@
 *.o
 build/
 exercise_wrap.cxx
+*.java
+*.class
