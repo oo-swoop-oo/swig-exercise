@@ -4,3 +4,5 @@ build/
 exercise_wrap.cxx
 *.java
 *.class
+!test/**/*.so
+!test/**/*.java
