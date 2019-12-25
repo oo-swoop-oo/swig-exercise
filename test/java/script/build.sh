@@ -2,5 +2,5 @@
 
 SOURCES=`find -name *.java | paste -sd " " -`
 
-mkdir classes
+mkdir -p classes
 javac -d ./classes $SOURCES
