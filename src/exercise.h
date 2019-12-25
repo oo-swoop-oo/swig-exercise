@@ -8,6 +8,7 @@ using namespace std;
 struct response_type
 {
     string body;
+    double rtt;
 };
 
 struct post_type

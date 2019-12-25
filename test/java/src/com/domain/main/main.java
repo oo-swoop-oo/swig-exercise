@@ -12,5 +12,9 @@ public class main {
         post_type post = exercise.get_post_details(postId);
         System.out.println("user id: " + post.getUser_id());
         System.out.println("title: " + post.getTitle());
+
+        int userId = 10;
+        int timing = exercise.get_request_timing(userId);
+        System.out.println("timing: " + timing + " ms");
     }
 }
