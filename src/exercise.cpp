@@ -6,8 +6,6 @@
 #include "exercise.h"
 
 #define BASE_URL "https://jsonplaceholder.typicode.com/"
-#define POSTS_PATH "posts/"
-#define USERS_PATH "users/"
 
 using namespace std;
 
@@ -63,9 +61,11 @@ post_type* get_post_details(int post_id)
         return NULL;
     }
     
-    const char* url = get_resource_url(POSTS_PATH, post_id);
+    string url(BASE_URL);
+    url.append("posts/");
+    url.append(to_string(post_id));
 
-    response_type *response = get_request(url);
+    response_type *response = get_request(url.c_str());
 
     cJSON *json = cJSON_Parse(response->body.c_str());
     cJSON *user_id = cJSON_GetObjectItemCaseSensitive(json, "userId");
@@ -87,12 +87,32 @@ int get_request_timing(int user_id)
         return 0;
     }
 
-    const char* url = get_resource_url(USERS_PATH, user_id);
+    double total_request_rtt = 0.0;
 
-    response_type *response = get_request(url);
-    double rtt = response->rtt;
+    string posts_url(BASE_URL);
+    posts_url.append("posts?userId=");
+    posts_url.append(to_string(user_id));
 
-    // TODO: process request response and obtain round-trip-time (ms)
+    response_type *posts_response = get_request(posts_url.c_str());
+    total_request_rtt += posts_response->rtt;
 
-    return ceil(rtt * 1000);
+    cJSON *posts_json = cJSON_Parse(posts_response->body.c_str());
+    int posts_count = cJSON_GetArraySize(posts_json);
+
+    for (int index = 0; index < posts_count; index++) {
+        cJSON *post_json = cJSON_GetArrayItem(posts_json, index);
+        cJSON *post_id_json = cJSON_GetObjectItemCaseSensitive(post_json, "id");
+        int post_id = post_id_json->valueint;
+
+        string comments_url(BASE_URL);
+        comments_url.append("comments?postId=");
+        comments_url.append(to_string(post_id));
+
+        response_type *comments_response = get_request(comments_url.c_str());
+        total_request_rtt += comments_response->rtt;
+    }
+
+    cJSON_Delete(posts_json);
+
+    return ceil(total_request_rtt * 1000);
 }
