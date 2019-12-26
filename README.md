@@ -35,7 +35,7 @@ My current development environment uses MacOS Catalina. In order to create a gen
 
 ### Step 1 - Docker Container Setup
 **Note**
-If you are already using an Ubuntu 18.04 Docker container, or are have bootstrapped an Ubuntu 18.04 OS, then please skip this step and proceed onto the next.
+If you are already using an Ubuntu 18.04 Docker container, or are have bootstrapped an Ubuntu 18.04 OS, then please skip this step and proceed onto the [next](#step-2---install-the-development-prerequisites).
 
 Download and install the desktop version of Docker for your current OS:
 
