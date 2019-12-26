@@ -1,6 +1,35 @@
 # swig-exercise
 Just an exercise in using SWIG and exploring it's capabilities and integration
 
+## Contents
+
+- [Setup](#setup)
+  * [Step 1 - Docker Container Setup](#step-1---docker-container-setup)
+      - [Mac](#mac)
+      - [Ubuntu](#ubuntu)
+    + [Mount the Docker Image and Startup a New Container](#mount-the-docker-image-and-startup-a-new-container)
+  * [Step 2 - Install the Development Prerequisites](#step-2---install-the-development-prerequisites)
+    + [Update the APT repository](#update-the-apt-repository)
+    + [Install Git](#install-git)
+    + [Install the Build Toolchain](#install-the-build-toolchain)
+    + [Install Wget](#install-wget)
+    + [Install SWIG and its Dependencies](#install-swig-and-its-dependencies)
+  * [Step 3 - Clone this Repository and Install its Dependencies](#step-3---clone-this-repository-and-install-its-dependencies)
+    + [Clone the Project](#clone-the-project)
+    + [Install pkg-config](#install-pkg-config)
+    + [Install the libcurl Development Package](#install-the-libcurl-development-package)
+    + [Install the NodeJS Development Package and Dependencies](#install-the-nodejs-development-package-and-dependencies)
+    + [Install Node Version Manager (NVM) and NodeJS 10.18.0 LTS](#install-node-version-manager--nvm--and-nodejs-10180-lts)
+    + [Install node-gyp via NPM](#install-node-gyp-via-npm)
+    + [Install the OS Default Java Developer Kit (JDK)](#install-the-os-default-java-developer-kit--jdk-)
+- [Building the SWIG Shared Libraries](#building-the-swig-shared-libraries)
+- [Testing the SWIG Shared Libraries](#testing-the-swig-shared-libraries)
+  * [Javascript](#javascript)
+  * [Java](#java)
+- [Examples](#examples)
+  * [Javascript](#javascript-1)
+  * [Java](#java-1)
+
 ## Setup
 My current development environment uses MacOS Catalina. In order to create a generic set of setup instructions, I've opted to use a Docker container running off of a vanilla Ubuntu 18.04 image. What follows will be the steps taken to create the proper development environment for using SWIG to target Java and Javascript as the desired languages to support the source shared library.
 
