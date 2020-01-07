@@ -77,6 +77,8 @@ post_type* get_post_details(int post_id)
 
     cJSON_Delete(json);
 
+    delete response;
+
     return post;
 }
 
@@ -110,9 +112,13 @@ int get_request_timing(int user_id)
 
         response_type *comments_response = get_request(comments_url.c_str());
         total_request_rtt += comments_response->rtt;
+
+        delete comments_response;
     }
 
     cJSON_Delete(posts_json);
+
+    delete posts_response;
 
     return ceil(total_request_rtt * 1000);
 }
